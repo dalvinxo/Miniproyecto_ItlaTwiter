@@ -1,0 +1,117 @@
+﻿@model Superacion.ViewModels.LoginUsuarioViewModels
+@{
+    Layout = null;
+}
+@* Page Login*@
+<!doctype html>
+<html lang="en">
+@*Cabecera Login*@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!--CSS-->
+    <link href="~/css/Plantilla.css" rel="stylesheet" />
+    <!-- font style -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:ital,wght@1,600;1,800&family=Open+Sans:wght@400;600&family=Oswald:wght@400;500&family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    <!--Title-->
+    <title>Login</title>
+</head>
+<body id="login-body">
+    <header class="container-fluid position-relative fixed-top" style="background:skyblue">
+        <h1 class="align-items-center ">Itla Twitter</h1>
+    </header>
+    @Html.Raw(TempData["LoginR"]);
+    @*fin del juego*@
+    <div class="text-center row align-items-center justify-content-center vh-100 m-1">
+
+        <div class="col-lg-4 rounded bg-light" id="login-form">
+            <div class=""><h3 id="letter-login" class="rounded-top aling-middle text-center text-info font-weight-bold text">Itla Twitter</h3>   </div>
+            <hr />
+            <div style="padding:3px">
+                <div class="form-row align-items-center d-flex flex-column bd-highlight mb-3 col">
+                    <form asp-controller="Principal" asp-action="Index" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="form-row ">
+                            <label asp-for="Usuario1" class="control-label"></label>
+                            <input asp-for="Usuario1" class="form-control " />
+                            <span asp-validation-for="Usuario1" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-row">
+                            <label asp-for="Clave" class="control-label"></label>
+                            <input asp-for="Clave" class="form-control" />
+                            <span asp-validation-for="Clave" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-start">
+                            <input type="button" class="text-warning btn btn-link" style="margin-top:-2px;  margin-left:-13px; font-size:17px; font-family:'Times New Roman', Times, serif" data-toggle="modal" data-target="#formularioAgregar" value="¿Olvidaste tu contraseña?" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Acceder" class="btn btn-outline-success btn-block m-1 p-1" />
+                        </div>
+                    </form>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <a asp-action="Signup" class="btn btn-outline-primary">Registrarse</a>
+                    </div>
+                </div>
+
+            </div>
+            @*Formulario Recuperacion de cuenta*@
+            <!-- Modal -->
+            <div class="modal fade" id="formularioAgregar" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel" style="color:darkcyan">Recuperación de cuenta.</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" style="background-color:red">&times;</span>
+                            </button>
+                        </div>
+                        @*Formulario Agregar Amigo.*@
+                        <div class="modal-body">
+                            <form asp-action="Restores" method="post" class="needs-validation" novalidate>
+                                <div class="form-group">
+                                    <input type="text" placeholder="Digitar usuario del amigo..." class="form-control" name="NameUsuario" required />
+                                    <div class="valid-feedback">
+                                        <div class="d-flex justify-content-start">Puede Verificar su usuario</div>
+                                    </div>
+                                    <div class="invalid-feedback glyphicon-star">
+                                        <div class="d-flex justify-content-start">Este campo no puede estar vacio.</div>
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-warning btn-block" value="Restablecer Contraseña" />
+                            </form>
+
+                        </div>
+
+                        @*fin*@
+
+                    </div>
+                </div>
+            </div>
+            @*finn*@
+
+
+        </div>
+
+    </div>
+    <!-- jQuery, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

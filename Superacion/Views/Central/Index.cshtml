@@ -1,0 +1,154 @@
+﻿@model Superacion.ViewModels.PublicacionViewModel
+@using Microsoft.AspNetCore.Http
+@{
+    Layout = null;
+}
+@* Page Home*@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!--CSS-->
+    <link href="~/css/Plantilla.css" rel="stylesheet" />
+    <!-- font style -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:ital,wght@1,600;1,800&family=Open+Sans:wght@400;600&family=Oswald:wght@400;500&family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    @*Cabecera Home*@
+    <title>💘Home!</title>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
+</head>
+<body id="login-body" style="background:skyblue">
+    <header class="container-fluid position-relative">
+        <nav class="navbar fixed-top navbar-dark bg-dark">
+            <a asp-action="Index" class="navbar-brand"><h1 class="align-items-center ">Itla Twitter: @Context.Session.GetString("")</h1></a>
+            <div class="form-inline">
+                <ul class="nav justify-content-end nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Friends"  style="margin-right:15px;">Amigos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Central" asp-action="Logout" class="nav-link btn btn-outline-danger" >Cerrar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+    @*Contenido*@
+    <div class="container cuerpo-home bg-light border border-white rounded">
+
+
+
+        <div class="table-bordered rounded" style="padding:7px; margin-top:3px;">
+            <div class="p-2 bd-highlight bg-success rounded">
+            <h3 id="hombe-publicar" class="align-items-center">
+                ¿Cuáles son tus Pensamientos?
+            </h3>
+            </div>
+            <form asp-controller="Central" asp-action="Publicar" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <label asp-for="Titulo"></label>
+                <div class="form-group">
+                    <input asp-for="Titulo" class="form-control" placeholder="Ingresar Titulo" required/>
+                    <span asp-validation-for="Titulo" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Cuerpo"></label>
+                    <textarea class="form-control is-invalid" asp-for="Cuerpo" placeholder="Escribir cuerpo de la publicacion" required></textarea>
+                    <span asp-validation-for="Cuerpo" class="text-danger"></span>
+                </div>
+                <input type="hidden" asp-for="IdUsuario" value="@Context.Session.GetInt32("IdUsuarioLogueado")" />
+                <button type="submit" class="btn btn-outline-info btn-lg btn-block">Publicar</button>
+            </form>
+
+
+        </div>
+
+        <div class="table-bordered rounded" style="padding:6px; margin-top:4px; margin-bottom:6px;">
+            <div class="bd-highlight rounded text-center" id="bod-publicar"><h3>Publicaciones!</h3></div>
+
+            @foreach (var p in Model.Public)
+            {
+                <div class="card border-dark" style="margin-top:2px;">
+                    <div class="card-header bg-light">
+                        <h5 class="text-dark align-text-middle">
+                            @p.Titulo<div class="d-flex justify-content-end d-flex align-items-start" style="margin-top:-18px;">
+                                <a asp-controller="Edicion" asp-action="EditPublic" asp-route-id="@p.IdPublicacion" class="btn btn-warning p-1">Editar</a>
+                                <a asp-controller="Edicion" asp-action="DeletePublic" asp-route-id="@p.IdPublicacion" class="btn btn-danger p-1" style="margin-left:10px;">Eliminar</a>
+                            </div>
+                        </h5>
+                    </div>
+
+                    <div class="card-body text-info">
+                        <p class="card-text text-justify">@p.Cuerpo</p>
+                        <p class="card-text"><small class="text-muted">@p.Fecha</small></p>
+
+                     
+                            @foreach (var item in Model.Coment)
+                            {
+                                if (p.IdPublicacion == item.IdPublicacion)
+                                {
+                                    <div class="card card-body text-dark ">
+                                        <div class="card-title text-success font-weight-bold ">@item.Nombre @item.Apellido</div>
+                                        @item.Comentario1
+                                        <p class="card-text"><small class="text-muted small">@item.Fecha</small></p>
+                                    </div>}
+                            }
+
+                            <div class="card-footer bg-transparent border-info align-items-center">
+                                <form asp-action="Comentar" method="post" asp-controller="Central">
+                                    <div class="form-group row">
+                                        <div class="col-sm-10">
+                                            <input type="hidden" name="IdPublicacion" value="@p.IdPublicacion" />
+                                            <input type="hidden" name="aplicacion" value="1" />
+                                            <input type="text" placeholder="Escribir Comentario....." class="form-control" name="Comentario1">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary col-lg-pull-11">Comentar</button>
+
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+            }
+
+        </div>
+
+        <!-- jQuery, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿h1 {
+    font-family: 'Lobster', cursive;
+}
+.cuerpo-home {
+margin-top:6%;
+background:rgb(62,26,156);
+
+}
+
+#hombe-publicar {
+    font-family: 'Lobster', Rockwell;
+}
+
+#bod-publicar {
+    background: rgba(69,252,206,1);
+    font-family: 'Lobster', monospace;
+}
+
+#login-body {
+    background: rgb(62,26,156);
+    background: linear-gradient(90deg, rgba(62,26,156,1) 11%, rgba(6,124,204,1) 42%, rgba(69,252,206,1) 100%);
+}
+
+#login-form {
+  margin-top:-100px;
+}
+
+#letter-login {
+    font-family: 'Crimson Pro', serif;
+    font-size: 48px;
+}
+
+label {
+    font-family: 'Lobster', monospace;
+    font-size: 22px;
+}
+
+#btn-atras-registro {
+    font-family: font-family: 'Oswald', cursive;
+    font-size: 18px;
+    font-style: unset;
+}
+
+.panel-title {
+    background: rgba(255, 255, 255, 0.8);
+    font-family: 'Crimson Pro', serif;
+    font-size: 38px;
+}
+
+centered-form {
+    margin-top: 60px;
+}
+
+.centered-form .panel {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}
+
+label.label-floatlabel {
+    font-weight: bold;
+    color: #46b8da;
+    font-size: 11px;
+}
+
+#msc {
+    font-family: 'Crimson Pro', serif;
+    font-size: 12px;
+    margin-top:2px;
+}
+
+#amigoList{
+    font-family: 'Lobster', monospace;
+    font-size: 43px;
+}

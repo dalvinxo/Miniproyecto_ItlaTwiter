@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+@* Page Login*@
+<!doctype html>
+<html lang="en">
+@*Cabecera Logout*@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!--CSS-->
+    <link href="~/css/Plantilla.css" rel="stylesheet" />
+    <!-- font style -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:ital,wght@1,600;1,800&family=Open+Sans:wght@400;600&family=Oswald:wght@400;500&family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    <!--Title-->
+    <title>Asistente</title>
+</head>
+<body id="login-body">
+    <header class="container-fluid position-relative" style="background:skyblue">
+        <h1 class="align-items-center ">Itla Twitter</h1>
+
+    </header>
+    <div class="alert alert-danger alert-dismissible fade show text-center text-dark" role="alert">
+        El usuario <strong>"@ViewBag.Name"</strong>. No esta registrado en el sistema!
+    <p class="mb-0">Verificar que el usuario este correctamente digitado : <a asp-action="Friends" asp-controller="Central" class="btn btn-outline-info">Amigos</a></p>
+    </div>
+
+
+    <!-- jQuery, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
